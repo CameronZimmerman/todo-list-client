@@ -11,13 +11,20 @@ import SignUpPage from './Auth/SignUpPage.js'
 import ListPage from './ListPage/ListPage.js'
 import ProtectedRoute from './Components/ProtectedRoute.js'
 import Header from './Components/Header.js'
+import {getToken} from './local-storage-utils.js'
 
 export default class App extends Component {
     state = {token: ''}
 
+    componentDidMount() {
+      const token = getToken();
+      this.setState({token})
+    }
+
     handleTokenChange = (token) => {this.setState({token})}
 
     render() {
+      console.log(this.state);
         const {token} = this.state;
         return (
             <div>
@@ -32,7 +39,7 @@ export default class App extends Component {
                         <Route 
                             path="/signup" 
                             exact
-                            render={(routerProps) => <SignUpPage {...routerProps}/>} 
+                            render={(routerProps) => <SignUpPage {...routerProps} handleTokenChange = {this.handleTokenChange}/>} 
                         />
                         <Route 
                           path="/login" 

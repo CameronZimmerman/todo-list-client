@@ -19,7 +19,6 @@ export default class SignUpPage extends Component {
         this.props.handleTokenChange(token);
     }
     render() {
-        console.log(this.state);
         return (
             <div>
                 <form onSubmit = {this.handleSubmit}>
