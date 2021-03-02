@@ -16,8 +16,8 @@ import {getToken} from './local-storage-utils.js'
 export default class App extends Component {
     state = {token: ''}
 
-    componentDidMount() {
-      const token = getToken();
+    async componentDidMount() {
+      const token = await getToken();
       this.setState({token})
     }
 

@@ -24,6 +24,7 @@ export async function getTodos(token) {
 export async function addTodo(todo, token) {
     await request.post(`${url}/api/todos`)
         .set('Authorization', token)
+        .send(todo)
 }
 
 export async function updateTodos(token, id) {
