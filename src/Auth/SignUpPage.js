@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { signUpUser } from '../api-utils.js'
+import { setToken, getToken } from '../local-storage-utils.js'
 export default class SignUpPage extends Component {
     state = {
         email: '',
@@ -12,8 +13,10 @@ export default class SignUpPage extends Component {
         this.setState({password: e.target.value})
     }
     handleSubmit = async (e) => {
-        e.preventDefault();
-        let token = await signUpUser(this.state);
+        e.preventDefault()
+        let token = await signUpUser(this.state)
+        setToken(token)
+        this.props.handleTokenChange(token);
     }
     render() {
         console.log(this.state);

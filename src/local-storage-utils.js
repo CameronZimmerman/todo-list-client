@@ -1,8 +1,8 @@
-const USER = 'USER';
+const TOKEN = 'TOKEN'
 
 export function getUser() {
-    return JSON.parse(localStorage.getItem(USER) || '{}')
+    return localStorage.getItem(TOKEN) || ''
 }
-export function setUser(user) {
-    localStorage.setItem(USER, JSON.stringify(user));
+export function setUser(token) {
+    localStorage.setItem(TOKEN, token)
 }

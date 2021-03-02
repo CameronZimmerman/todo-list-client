@@ -5,29 +5,34 @@ import {
     Switch,
 } from 'react-router-dom';
 
-import Home from './Home/Home.js';
-import LoginPage from './Auth/LoginPage.js';
-import SignUpPage from './Auth/SignUpPage.js';
-import ListPage from './ListPage/ListPage.js';
+import Home from './Home/Home.js'
+import LoginPage from './Auth/LoginPage.js'
+import SignUpPage from './Auth/SignUpPage.js'
+import ListPage from './ListPage/ListPage.js'
 import ProtectedRoute from './Components/ProtectedRoute.js'
 import Header from './Components/Header.js'
 
 export default class App extends Component {
+    state = {token: ''}
+
+    handleTokenChange = (token) => {this.setState({token})}
+
     render() {
+        const {token} = this.state;
         return (
             <div>
                 <Router>
-                <Header/>
+                <Header  token = {token}/>
                     <Switch>
                         <Route 
                             path="/" 
                             exact
-                            render={(routerProps) => <Home {...routerProps} />} 
+                            render={(routerProps) => <Home {...routerProps}/>} 
                         />
                         <Route 
                             path="/signup" 
                             exact
-                            render={(routerProps) => <SignUpPage {...routerProps} />} 
+                            render={(routerProps) => <SignUpPage {...routerProps}/>} 
                         />
                         <Route 
                           path="/login" 
@@ -37,7 +42,8 @@ export default class App extends Component {
                         <ProtectedRoute 
                           path="/todos" 
                           exact
-                          render={(routerProps) => <ListPage {...routerProps} />} 
+                          token = {token}
+                          render={(routerProps) => <ListPage {...routerProps}  token = {token}/>} 
                         />
                     </Switch>
                 </Router>
