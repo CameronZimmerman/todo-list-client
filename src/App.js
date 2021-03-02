@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Home from './Home/Home.js';
 import LoginPage from './Auth/LoginPage.js';
-import signUpPage from './Auth/signUpPage.js';
+import signUpPage from './Auth/SignUpPage.js';
 import ListPage from './ListPage/ListPage.js';
 import ProtectedRoute from './Components/ProtectedRoute.js'
 
