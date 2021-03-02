@@ -4,17 +4,20 @@ import {
     Route, 
     Switch,
 } from 'react-router-dom';
+
 import Home from './Home/Home.js';
 import LoginPage from './Auth/LoginPage.js';
-import signUpPage from './Auth/SignUpPage.js';
+import SignUpPage from './Auth/SignUpPage.js';
 import ListPage from './ListPage/ListPage.js';
 import ProtectedRoute from './Components/ProtectedRoute.js'
+import Header from './Components/Header.js'
 
 export default class App extends Component {
     render() {
         return (
             <div>
                 <Router>
+                <Header/>
                     <Switch>
                         <Route 
                             path="/" 
@@ -24,7 +27,7 @@ export default class App extends Component {
                         <Route 
                             path="/signup" 
                             exact
-                            render={(routerProps) => <signUpPage {...routerProps} />} 
+                            render={(routerProps) => <SignUpPage {...routerProps} />} 
                         />
                         <Route 
                           path="/login" 
@@ -32,7 +35,7 @@ export default class App extends Component {
                           render={(routerProps) => <LoginPage {...routerProps} />} 
                         />
                         <ProtectedRoute 
-                          path="/todo" 
+                          path="/todos" 
                           exact
                           render={(routerProps) => <ListPage {...routerProps} />} 
                         />
