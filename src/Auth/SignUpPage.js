@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { signUpUser } from '../api-utils.js'
 export default class SignUpPage extends Component {
     state = {
         email: '',
@@ -11,15 +11,15 @@ export default class SignUpPage extends Component {
     handlePasswordChange = (e) => {
         this.setState({password: e.target.value})
     }
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
-        //api stuff goes here
+        let token = await signUpUser(this.state);
     }
     render() {
         console.log(this.state);
         return (
             <div>
-                <form>
+                <form onSubmit = {this.handleSubmit}>
                     <label> Email
                         <input value = {this.state.email} onChange = {this.handleEmailChange}/>
                     </label>
