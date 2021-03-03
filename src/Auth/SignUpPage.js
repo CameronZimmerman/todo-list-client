@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { signUpUser } from '../api-utils.js'
-import { setToken, getToken } from '../local-storage-utils.js'
+import { setToken } from '../local-storage-utils.js'
 export default class SignUpPage extends Component {
     state = {
         email: '',
