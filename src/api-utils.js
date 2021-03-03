@@ -27,8 +27,9 @@ export async function addTodo(todo, token) {
         .send(todo)
 }
 
-export async function updateTodos(token, id) {
-    await request.put(`${url}/api/todos/${id}`)
+export async function updateTodo(token, id) {
+    let updatedTodoData = await request.put(`${url}/api/todos/${id}`)
         .set('Authorization', token)
         .send({id})
+    return updatedTodoData.body.complete
 }

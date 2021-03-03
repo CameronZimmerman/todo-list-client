@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getTodos, addTodo } from '../api-utils.js'
+import { getTodos, addTodo, updateTodo} from '../api-utils.js'
 import ListItem from './ListItem.js'
 export default class ListPage extends Component {
     state = {
@@ -23,6 +23,13 @@ export default class ListPage extends Component {
         this.setState({todo: e.target.value})
     }
 
+    handleTodoToggle = async(id) =>{
+        const { token } = this.props
+        const completed = await updateTodo(token, id)
+        await this.fetchTodos()
+        return completed
+    }
+
     fetchTodos = async (e) => {
         const { token } = this.props
         let todos = await getTodos(token)
@@ -40,7 +47,7 @@ export default class ListPage extends Component {
                     </label>
                 </form>
                 {!todos.length && <p>Nothing here... you're all done.</p>}
-               {todos.map(todo => <ListItem todo = {todo.todo}/>)}
+               {todos.map(todo => <ListItem todo = {todo} token = {this.props.token} handleTodoToggle = {this.handleTodoToggle}/>)}
 
             </div>
         )
